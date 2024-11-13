@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form with Dialog Box</title>
+</head>
+<body>
+
+    <form id="myForm" onsubmit="showDialog(event)">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <!-- Dialog box -->
+    <div id="dialogBox" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background-color:#fff; border:1px solid #ccc; padding:20px; box-shadow:0 0 10px rgba(0, 0, 0, 0.1);">
+        <p>Form submitted successfully! Please Login to continue the journey !!!</p>
+        <button onclick="closeDialog()"> OK </button>
+    </div>
+
+    <script>
+        // Function to display the dialog box
+        function showDialog(event) {
+            event.preventDefault();  // Prevent the form from submitting
+            document.getElementById('dialogBox').style.display = 'block';
+        }
+
+        // Function to close the dialog box
+        function closeDialog() {
+            document.getElementById('dialogBox').style.display = 'none';
+            document.getElementById('myForm').reset();  // Optionally reset the form after submission
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Range</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .info {
+            margin-top: 20px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Body Mass Index (BMI) Range</h1>
+        <table>
+            <tr>
+                <th>BMI Range</th>
+                <th>Category</th>
+            </tr>
+            <tr>
+                <td>Less than 18.5</td>
+                <td style="color:rgba(0, 0, 255, 0.755);">Underweight</td>
+            </tr>
+            <tr>
+                <td>18.5 to 24.9</td>
+                <td style="color:rgb(13, 138, 13);">Normal weight</td>
+            </tr>
+            <tr>
+                <td>25 to 29.9</td>
+                <td style="color:rgba(255, 0, 0, 0.753);">Overweight</td>
+            </tr>
+            <tr>
+                <td>30 to 34.9</td>
+                <td style="color:brown;">Obesity (Class 1)</td>
+            </tr>
+            <tr>
+                <td>35 to 39.9</td>
+                <td style="color:brown;">Obesity (Class 2)</td>
+            </tr>
+            <tr>
+                <td>40 and above</td>
+                <td style="color:brown;">Severe obesity (Class 3)</td>
+            </tr>
+        </table>
+        <div class="info">
+            <h2>Understanding BMI</h2>
+            <p>The Body Mass Index (BMI) is a simple and widely used method for estimating body fat based on an individual's weight and height. It is calculated using the formula: <br><strong>BMI = weight (kg) / height (m)^2</strong></p>
+           
+            <!-- <p><strong>BMI = weight (kg) / height (m)^2</strong></p>
+            <p>BMI is used as a screening tool to categorize individuals into different weight ranges that can indicate potential health risks. It's important to note that BMI does not differentiate between muscle and fat mass, so other measurements such as waist circumference, waist-to-hip ratio, and body fat percentage can provide additional insights into an individual's health.</p> -->
+        </div>
+    </div>
+</body>
+</html>

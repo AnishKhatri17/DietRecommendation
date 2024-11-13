@@ -1,0 +1,659 @@
+/* User_Dashboard.html Landing Page CSS */
+body {
+    font-family: 'Roboto', sans-serif;
+    padding: 0;
+    background: url('images/User_background3.jpg') no-repeat center center/cover; /*first cover for horixontal and second to adjust vertical */
+    background-attachment: fixed; /* Keeps the background fixed while scrolling */
+    margin: 0; /* Removes default margin around the body */
+    height: 100vh; /* Ensures the body covers the full viewport height */
+    /* width: 100vw; This causes scroling effect horizontally, remove this and let browser handle the width naturally.
+      Ensures the body covers the full viewport width */
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
+.dashboard {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    background-color: #2a3f54;
+    width: 250px;
+    padding: 30px;
+    box-sizing: border-box;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: fixed; /* Sidebar stays in place */
+    left: 0;
+    top: 0;
+    /* overflow-y: auto;  */
+    /* Scroll if content is too tall */
+}
+ /* CSS code for responsiveness of sidebar of the dashboard */
+ @media (max-width: 1024px) {
+    .sidebar {
+        width: 220px; /* Shrink sidebar for smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%; /* Full-width sidebar for mobile */
+        height: auto;
+        position: relative; /* Remove fixed positioning for mobile */
+    }
+}
+
+/* Sidebar Title */
+.sidebar h1 {
+    font-weight: bold;
+    margin-bottom: 60px;
+    font-size: 24px; /* Increased font size for the header */
+    color: white; /* Accent color for the header */
+    text-align: center;
+    margin-top: 0px;
+    width: 180px;
+    height: 40px;
+    padding: 10px;
+    background-color: #1abc9c;
+    letter-spacing: 1px;
+
+}
+/* Sidebar Menu */
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 25px; 
+    /* margin spacing between the buttons */
+    /* margin: 15px 0; */
+}
+/* Sidebar Menu Links Styled as Buttons */
+.sidebar ul li a {
+    display: block; /* Block display for better button styling */
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    padding: 12px 20px; /* Padding for button-like appearance */
+    background-color: #3b4b5a; /* Slightly different color for button look */
+    border-radius: 8px; /* Rounded corners according to our requirement */
+    transition: all 0.5s ease; /* Smooth transition for hover effects */
+    text-align: center; /* Center the text inside the button */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Light shadow for depth */
+
+}
+/* Hover and Active States */
+.sidebar ul li a:hover {
+    background-color: #1abc9c; /* Hover effect */
+    color: black; /* Inverse text color on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+    transform: translateY(-2px); /* Button moves up slightly */
+}
+.sidebar ul li a:active {
+    background-color: #6a5fe0; /* Slightly darker on click */
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3); /* Inset shadow for click effect */
+}
+
+
+/* Main Content Styles */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-left: 250px; /* Prevents overlap with sidebar */
+}
+ /* CSS code for responsiveness */
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0; /* Full width on small screens */
+        padding: 15px;
+    }
+}
+
+.header {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    margin-top: -20px;
+    /* background-color: rgba(255, 255, 0, 0.703); */
+    background-color: yellow;
+    border-bottom: 2px solid #bdc3c7;
+    border-left: 2px solid #bdc3c7;
+    border-right: 2px solid #bdc3c7;
+    /* position: relative; */
+}
+
+/* .header h1 {
+    font-weight: 500;
+    color: #333;
+} */
+
+.user-info {
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Vertically align items */
+    gap: 90px; /* Space between the avatar and text */
+}
+.user-info p{
+    color: rgb(76, 76, 152);
+    font-family: 'Roboto', sans-serif;
+    font-size: 34px;
+    margin: 0; /* Remove default margin */
+    line-height: 1.5; /* Adjust line height if needed */
+    text-align: center;
+    font-weight: bold; /* Makes the text bold */
+    font-style: italic; /* Makes the text italic */
+}
+
+
+.user-info .avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/* .user-info .user-name {
+    font-weight: 500;
+    color: #333;
+} */
+
+/* Card Styles */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px;
+
+}
+
+.card {
+    /* background-color: #fff; */
+    background-color: rgb(209, 209, 233);;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid black;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    transition: transform 1s;
+    
+}
+
+/* Card link for redirection to sections */
+.card-link 
+{
+   text-decoration: none;
+}
+
+
+/*VVV important Feature, Smooth scroll for anchor links */
+/* html 
+{
+    scroll-behavior: smooth;
+} */
+
+.card h3 {
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: bold;
+}
+
+.card p {
+    font-size: 14px;
+    color: #666;
+}
+
+.card:hover {
+    /* transform: translateY(-5px); */
+    transform: scale(1.07);
+    cursor: pointer;
+    transition:  transform 0.1s ease, color 1.2s ease, background-color 1.2s ease ;
+    background: rgb(140, 232, 163);
+}
+
+
+/*
+        CSS for BMI Calculator ...............
+*/
+.container {
+    margin-top: 0px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: calc(100% - 250px); /* Subtract sidebar width */
+    margin-left: 250px; /* Start next to the sidebar */
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    border: 1px solid black;
+    min-height: 100vh; /* Takes full viewport height */
+    height: auto;
+}
+
+ /* CSS code for device responsiveness */
+@media (max-width: 1024px) 
+{
+    .container 
+    {
+        max-width: calc(100% - 220px); /* Adjust for smaller screens */
+        margin-left: 220px;
+    }
+}
+
+@media (max-width: 768px) 
+{
+    .container 
+    {
+        max-width: 100%; /* On smaller screens, make it full width */
+        margin-left: 0;
+        margin-right: 0;
+        padding: 10px;
+    }
+}
+.calculator {
+    margin-top: 80px;
+    margin-left: 50px;
+    margin-right: -50px;
+    height: 340px;
+    width: 350px;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Result styling */
+.calculator output {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+/* Input fields and submit button within the calculator */
+.calculator input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+.calculator input[type="submit"] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/*
+    Displaying information of BMI to the user, CSS code .....
+*/
+.info {
+    flex: 1; /* Takes up remaining space */
+    margin-left: 100px;
+    margin-right: 50px;
+    box-sizing: border-box;
+    line-height: 1.5;
+    /* border: 1px solid black; */
+  
+}
+
+.information{
+    text-align: justify;
+}
+.ok{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* Heading styling */
+h1 {
+    text-align: center;
+    color: #4CAF50;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid black;
+    margin-top: 20px;
+  
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    border: 1px solid black;
+    background-color: #4CAF50;
+    color: white;
+}
+
+tr {
+    border: 1px solid black;
+    
+} 
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:last-child td {
+    border-bottom: 1px solid black;
+}
+
+.output{
+    margin-top: 30px;
+    padding: 5px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    width:75%;
+    border-radius: 5px;
+}
+
+/*
+        CSS for Calorie Calculator using Harris-Benedict Equation ...............
+*/
+.calculator2 
+{
+    width: 100%;
+    max-width: 600px; /* Set a max width for the form */
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    /* margin-top: 20px;
+    margin-left: 30px; */
+    /* display: inline-block; */
+}
+.calculator2 input[type="number"],
+.calculator2 select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+.calculator2 input[type="submit"] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Responsive adjustments for Calorie Calculator and Containerrrrrrr */
+@media (max-width: 768px) 
+{
+    .container2 {
+        margin-left: 0; /* Remove margin on small screens */
+        padding: 15px;
+    }
+
+    .calculator2 {
+        width: 100%; /* Full width on small screens */
+    }
+}
+
+.second
+{
+    margin-top: 30px;
+    padding: 5px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    width:100%;
+    border-radius: 5px;
+}
+.container2   /*This is the container for Calorie Calculator Form */
+{
+     display: flex;
+     justify-content: center; /* Center the form horizontally */
+     align-items: center; /* Center the form vertically */
+     flex: 1; /* Allow container to take up remaining space */
+     /* height: fit-content; */
+     margin-left: 250px; /* Prevent overlap with sidebar */
+     padding: 20px;
+     background-color: #fff;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+     border-radius: 8px;
+     border: 1px solid black;
+     min-height: 100vh; /* Ensures the container takes full viewport height */
+     height: auto; /* Let the container adjust based on the content */
+}
+
+
+/* 
+    CSS for section "User Feedback" in Dashboard .....
+    Basic styling for body 
+*/
+/* body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+} */
+/* Feedback Section Container */
+#Feedback {
+    display: flex;
+    justify-content: center; /* Centers the form horizontally */
+    align-items: center; /* Centers the form vertically if needed */
+    margin-left: 250px; /* Adjust this to match your sidebar width */
+    padding: 20px;
+    min-height: 100vh; /* Takes full viewport height */
+    height: auto;
+    border: 1px solid black;
+    background-color: #fff; 
+    /* Background for the feedback section */
+}
+
+/* Feedback form container */
+.feedback-container {
+    background-color: rgb(138, 226, 229);
+    padding: 40px;
+    border-radius: 10px;
+    border: 1px solid yellow;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+.feedback-container h2 {
+    margin-bottom: 50px;
+    margin-top: 10px;
+    color: #333;
+}
+
+/* Input and Textarea styles */
+.feedback-form input[type="email"],
+.feedback-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px 0;
+    /* Margin is Top, Right, Buttom, Left . */
+    border: 1px solid black;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+/* Input and Textarea focus effect */
+.feedback-form input[type="email"]:focus,
+.feedback-form textarea:focus {
+    border-color: #66afe9;
+    outline: none;
+    box-shadow: 0 0 5px rgba(102, 175, 233, 0.7);
+}
+
+/* Submit button styling */
+.feedback-form button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+/* Button hover effect */
+.feedback-form button:hover 
+{
+    background-color: #66afe9;
+    color: black;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) 
+{
+    .feedback-container 
+    {
+        padding: 20px;
+        max-width: 100%;
+    }
+}
+
+/*
+    User Profile Form (Continue Your Journey) Section CSS
+*/
+#UserProfile {
+    display: flex;
+    justify-content: center; /* Centers the form horizontally */
+    align-items: center; /* Centers the form vertically if needed */
+    margin-left: 250px; /* Adjust this to match your sidebar width */
+    padding: 20px;
+    min-height: 100vh; /* Takes full viewport height */
+    height: auto;
+    border: 1px solid black;
+    background-color: #fff; 
+    /* Background for the feedback section */
+}
+
+.form-container 
+{
+    background-color: #d8c6ee;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: green;
+}
+h3 
+{
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 50px;
+    color: red;
+}
+
+.form-row 
+{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.form-group 
+{
+    flex-basis: 30%;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+    text-align: left;
+    font-weight: bold;
+}
+
+select option[value="none"]
+{
+    font-weight: bold; /* Make 'None' bold */
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+    border-color: #7db9e8;
+    outline: none;
+}
+
+button {
+    width: 30%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+button:hover 
+{
+    background-color: #0056b3;
+}
+
+@media (max-width: 768px) 
+{
+    .form-row {
+        flex-direction: column;
+    }
+
+    .form-group {
+        flex-basis: 100%;
+        margin-bottom: 15px;
+    }
+}

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator and Info</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+     <style>
+        /* General styling for the body */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Container for flexbox layout */
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 90%;
+    height: fit-content;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Styling for the calculator */
+.calculator {
+    margin-top: 100px;
+    margin-left: 50px;
+    margin-right: -50px;
+    height: 350px;
+    width: 350px;
+    padding: 20px;
+    border: 1px solid  blue;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Input fields and submit button within the calculator */
+.calculator input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.calculator input[type="submit"] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Result styling */
+.result {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Styling for the information section */
+.info {
+    flex: 1; /* Takes up remaining space */
+    margin-left: 100px;
+    margin-right: 100px;
+    box-sizing: border-box;
+    line-height: 1.5;
+    border: 1px solid black;
+  
+}
+
+/* Heading styling */
+h1 {
+    text-align: center;
+    color: #4CAF50;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+     </style>
+</head>
+<body>
+    <div class="container">
+        <div class="calculator">
+            <h2>BMI Calculator</h2>
+            <form>
+                <label for="weight">Weight (kg):</label>
+                <input type="text" id="weight" name="weight" placeholder="Enter your weight in kilogram">
+                <label for="height">Height (cm):</label>
+                <input type="text" id="height" name="height" placeholder="Enter your height in centimeters">
+                <input type="submit" value="Calculate BMI">
+            </form><br>
+            <div class="result">
+                Your BMI is: <span id="bmiResult"></span>
+            </div>
+        </div>
+        
+        <div class="info">
+            <h1>Body Mass Index (BMI) Range</h1>
+            <table>
+                <tr>
+                    <th>BMI Range</th>
+                    <th>Category</th>
+                </tr>
+                <tr>
+                    <td>Less than 18.5</td>
+                    <td style="color:rgba(0, 0, 255, 0.755);">Underweight</td>
+                </tr>
+                <tr>
+                    <td>18.5 to 24.9</td>
+                    <td style="color:rgb(13, 138, 13);">Normal weight</td>
+                </tr>
+                <tr>
+                    <td>25 to 29.9</td>
+                    <td style="color:rgba(255, 0, 0, 0.753);">Overweight</td>
+                </tr>
+                <tr>
+                    <td>30 to 34.9</td>
+                    <td style="color:brown;">Obesity (Class 1)</td>
+                </tr>
+                <tr>
+                    <td>35 to 39.9</td>
+                    <td style="color:brown;">Obesity (Class 2)</td>
+                </tr>
+                <tr>
+                    <td>40 and above</td>
+                    <td style="color:brown;">Severe obesity (Class 3)</td>
+                </tr>
+            </table>
+            <div class="info2">
+                <h2>Understanding BMI</h2>
+                <p>The Body Mass Index (BMI) is a simple and widely used method for estimating body fat based on an individual's weight and height. It is calculated using the formula:</p>
+                <p><strong>BMI = weight (kg) / height (m)^2</strong></p>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

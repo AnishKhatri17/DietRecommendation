@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BMI Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .calculator {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .calculator input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        .calculator input[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h2>BMI Calculator</h2>
+        <form method="post">
+            <label for="weight">Weight (kg):</label>
+            <input type="text" id="weight" name="weight" required><br>
+            
+            <label for="height">Height (cm):</label>
+            <input type="text" id="height" name="height" required><br>
+            
+            <input type="submit" value="Calculate BMI">
+        </form>
+    </div>
+
+    <!-- ................................ PHP Code for BackEnd ................................... -->
+    <!-- <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Retrieve form data
+        $weight = $_POST['weight'];
+        $height = $_POST['height'];
+
+        // Calculate BMI
+        // Formula: BMI = weight (kg) / (height (m) * height (m))
+        // Convert height from cm to m
+        $height_m = $height / 100;
+        $bmi = $weight / ($height_m * $height_m);
+
+        // Display results
+        echo '<div class="result">';
+        echo "<h2>Results</h2>";
+        echo "<p>Weight: " . $weight . " kg</p>";
+        echo "<p>Height: " . $height . " cm</p>";
+        echo "<p>BMI: " . round($bmi, 1) . "</p>";
+
+        // Interpret BMI category
+        if ($bmi < 18.5) {
+            echo "<p>Category: Underweight</p>";
+        } elseif ($bmi >= 18.5 && $bmi < 25) {
+            echo "<p>Category: Normal weight</p>";
+        } elseif ($bmi >= 25 && $bmi < 30) {
+            echo "<p>Category: Overweight</p>";
+        } elseif ($bmi >= 30) {
+            echo "<p>Category: Obese</p>";
+        }
+
+        echo '</div>';
+    }
+    ?> -->
+
+</body>
+</html>
