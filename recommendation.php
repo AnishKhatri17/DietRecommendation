@@ -1,7 +1,6 @@
 <?php
 // Database connection
 include 'config.php';
-
 // Fetch user data from the form
 $name = $_POST['name'];
 $age = $_POST['userage'];
