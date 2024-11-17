@@ -1,4 +1,39 @@
 <?php
+session_start();
+require 'config.php'; // Database connection file (This is for storing the form data in "User_Profiles" database table..........)
+
+$userId = $_SESSION['user_id']; // Get the user ID from the session
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') 
+{
+    // Capture form data
+    $name = $_POST['name'];
+    $age = $_POST['userage'];
+    $gender = $_POST['gender'];
+    $height = $_POST['userheight'];
+    $weight = $_POST['userweight'];
+    $activity = $_POST['activity'];
+    $goal = $_POST['goal'];
+    $dietary = $_POST['dietary'];
+    $health = $_POST['health'];
+
+    // Insert or update the user profile in the database
+    $sql = "INSERT INTO user_profiles (user_id, name, age, gender, height, weight, activity, goal, dietary, health)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ON DUPLICATE KEY UPDATE
+            name = VALUES(name), age = VALUES(age), gender = VALUES(gender),
+            height = VALUES(height), weight = VALUES(weight), activity = VALUES(activity),
+            goal = VALUES(goal), dietary = VALUES(dietary), health = VALUES(health)";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("isisssssss", $userId, $name, $age, $gender, $height, $weight, $activity, $goal, $dietary, $health);
+    $stmt->execute();
+    $stmt->close();
+    /* Now that the form data is saved in "user_profiles" table, we can now continue with generating the diet recommendation logic and codes below... */
+}
+?>
+
+<?php
 // Database connection
 include 'config.php';
 // Fetch user data from the form

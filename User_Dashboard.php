@@ -1,6 +1,9 @@
 <?php
 session_start(); // Start session to access session variables (after user login)
 
+// Database connection
+require 'config.php'; // Database connection file (for storing the form values of User Profile ........)
+
 // Check if the user is logged in by checking if user_id is in session
 if (!isset($_SESSION['user_id'])) 
 {
@@ -9,8 +12,37 @@ if (!isset($_SESSION['user_id']))
     exit();
 }
 
-// Fetch the user's email from the session
+// Fetch the user's email from the session (This is for the feedback section)
 $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
+
+// These below PHP code is for storing the user form data in "user_profiles" database table ......
+$userId = $_SESSION['user_id'];
+// Initialize an empty array for user profile data
+$profile = [
+    'name' => '',
+    'age' => '',
+    'gender' => '',
+    'height' => '',
+    'weight' => '',
+    'activity' => '',
+    'goal' => '',
+    'dietary' => '',
+    'health' => ''
+];
+
+// Fetch existing profile data
+$sql = "SELECT * FROM user_profiles WHERE user_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $userId);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) 
+{
+    $profile = $result->fetch_assoc();
+}
+
+$stmt->close();
 ?>
 
 <!DOCTYPE html>
@@ -232,7 +264,7 @@ If a value is out of range, an alert is shown, and form submission is prevented.
                 <li><a href="#BMI">Calculate BMI</a></li>
                 <li><a href="#Calorie">Calorie Calculator</a></li>
                 <li><a href="#UserProfile">Start New Journey</a></li>
-                <li><a href="#">History and Records</a></li>
+                <li><a href="#HealthInfo">More Health Info</a></li>
                 <li><a href="#Feedback">Feedback</a></li>
                 <li><a href="User_Login.php">Logout</a></li>
             </ul>
@@ -399,20 +431,22 @@ If a value is out of range, an alert is shown, and form submission is prevented.
             <div class="form-row">
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required 
+                    value="<?php echo htmlspecialchars($profile['name']); ?>">
                 </div>
 
                 <div class="form-group">
                     <label for="age">Age</label>
-                    <input type="number" id="userage" name="userage" placeholder="Enter your age" required min="15" max="150">
+                    <input type="number" id="userage" name="userage" placeholder="Enter your age" required min="15" max="150"
+                    value="<?php echo htmlspecialchars($profile['age']); ?>">
                 </div>
 
                 <div class="form-group">
                     <label for="gender">Gender</label>
                     <select id="gender" name="gender" required>
-                        <option value="" disabled selected>Select gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
+                        <option value="" disabled>Select gender</option>
+                        <option value="male" <?php echo ($profile['gender'] == 'male') ? 'selected' : ''; ?>>Male</option>
+                        <option value="female" <?php echo ($profile['gender'] == 'female') ? 'selected' : ''; ?>>Female</option>
                         <!-- <option value="other">Other</option> -->
                     </select>
                 </div>
@@ -422,25 +456,27 @@ If a value is out of range, an alert is shown, and form submission is prevented.
             <div class="form-row">
                 <div class="form-group">
                     <label for="height">Height (cm)</label>
-                    <input type="number" id="userheight" name="userheight" placeholder="Enter height" required min="50" max="250"> 
+                    <input type="number" id="userheight" name="userheight" placeholder="Enter height" required min="50" max="250"
+                    value="<?php echo htmlspecialchars($profile['height']); ?>"> 
                     <!-- Assuming reasonable limits, based on some research on the internet..... -->
                 </div>
 
                 <div class="form-group">
                     <label for="weight">Weight (kg)</label>
-                    <input type="number" id="userweight" name="userweight" placeholder="Enter weight" required min="25" max="350">
+                    <input type="number" id="userweight" name="userweight" placeholder="Enter weight" required min="25" max="350"
+                    value="<?php echo htmlspecialchars($profile['weight']); ?>">
                     <!-- Assuming reasonable limits, based on some research on the internet.... -->
                 </div>
 
                 <div class="form-group">
                     <label for="activity">Activity Level</label>
                     <select id="activity" name="activity" required>
-                        <option value="" disabled selected>Select activity level</option>
-                        <option value="sedentary">Sedentary (Little or no exercise)</option>
-                        <option value="light">Light (Exercise 1-3 days/week)</option>
-                        <option value="moderate">Moderate (Exercise 3-5 days/week)</option>
-                        <option value="active">Active (Exercise 6-7 days/week)</option>
-                        <option value="superactive">Super active (very hard exercise)</option>
+                        <option value="" disabled>Select activity level</option>
+                        <option value="sedentary" <?php echo ($profile['activity'] == 'sedentary') ? 'selected' : ''; ?>>Sedentary (Little or no exercise)</option>
+                        <option value="light" <?php echo ($profile['activity'] == 'light') ? 'selected' : ''; ?>>Light (Exercise 1-3 days/week)</option>
+                        <option value="moderate" <?php echo ($profile['activity'] == 'moderate') ? 'selected' : ''; ?>>Moderate (Exercise 3-5 days/week)</option>
+                        <option value="active" <?php echo ($profile['activity'] == 'active') ? 'selected' : ''; ?>>Active (Exercise 6-7 days/week)</option>
+                        <option value="superactive" <?php echo ($profile['activity'] == 'superactive') ? 'selected' : ''; ?>>Super active (very hard exercise)</option>
                     </select>
                 </div>
             </div>
@@ -450,22 +486,22 @@ If a value is out of range, an alert is shown, and form submission is prevented.
                 <div class="form-group">
                     <label for="goal">Goal</label>
                     <select id="goal" name="goal" required>
-                        <option value="" disabled selected>Select goal</option>
-                        <option value="maintain_weight">Maintain Weight</option>
-                        <option value="weight_loss">Weight Loss</option>
-                        <option value="weight_gain">Weight Gain</option>
+                        <option value="" disabled>Select goal</option>
+                        <option value="maintain_weight" <?php echo ($profile['goal'] == 'maintain_weight') ? 'selected' : ''; ?>>Maintain Weight</option>
+                        <option value="weight_loss" <?php echo ($profile['goal'] == 'weight_loss') ? 'selected' : ''; ?>>Weight Loss</option>
+                        <option value="weight_gain" <?php echo ($profile['goal'] == 'weight_gain') ? 'selected' : ''; ?>>Weight Gain</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="dietary">Dietary Preference</label>
                     <select id="dietary" name="dietary" required>
-                        <option value="" disabled selected>Select dietary preference</option>
-                        <option value="any">Any (both veg and non-veg)</option> <!--For users that prefer both veg and non veg -->
-                        <option value="vegetarian">Vegetarian</option>
-                        <option value="vegan">Vegan</option>
-                        <option value="non_vegetarian">Non-Vegetarian</option>
-                       
+                        <option value="" disabled>Select dietary preference</option>
+                        <option value="any" <?= ($user_data['dietary_preference'] ?? '') === 'any' ? 'selected' : '' ?>>
+                            Any (both veg and non-veg)</option> <!--For users that prefer both veg and non veg -->
+                        <option value="vegetarian" <?php echo ($profile['dietary'] == 'vegetarian') ? 'selected' : ''; ?>>Vegetarian</option>
+                        <option value="vegan" <?php echo ($profile['dietary'] == 'vegan') ? 'selected' : ''; ?>>Vegan</option>
+                        <option value="non_vegetarian" <?php echo ($profile['dietary'] == 'non_vegetarian') ? 'selected' : ''; ?>>Non-Vegetarian</option>
                     </select>
                 </div>
             </div>
@@ -475,18 +511,18 @@ If a value is out of range, an alert is shown, and form submission is prevented.
                 <div class="form-group">
                     <label for="health">Health Condition /Disease</label>
                     <select id="health" name="health" placeholder="Select Health Condition" required>
-                        <option value="" disabled selected>Select health condition(Any diseases)</option>
-                        <option value="none">None</option>
-                        <option value="diabetes">Diabetes</option>
-                        <option value="kidney_disease">Kidney Disease</option>
-                        <option value="heart_disease">Heart Disease</option>
-                        <option value="hypertension">Hypertension</option>
-                        <option value="asthma">Asthma</option>
-                        <option value="acne">Acne</option>
-                        <option value="hypercholesterolemia">Hypercholesterolemia</option>
-                        <option value="high_blood_pressure">High Blood Pressure</option>
-                        <option value="low_blood_pressure">Low Blood Pressure</option>
-                        <option value="jaundice">Jaundice</option> 
+                        <option value="" disabled>Select health condition(Any diseases)</option>
+                        <option value="none" <?php echo ($profile['health'] == 'none') ? 'selected' : ''; ?>>None</option>
+                        <option value="diabetes" <?php echo ($profile['health'] == 'daibetes') ? 'selected' : ''; ?>>Diabetes</option>
+                        <option value="kidney_disease" <?php echo ($profile['health'] == 'kidney_disease') ? 'selected' : ''; ?>>Kidney Disease</option>
+                        <option value="heart_disease" <?php echo ($profile['health'] == 'heart_disease') ? 'selected' : ''; ?>>Heart Disease</option>
+                        <option value="hypertension" <?php echo ($profile['health'] == 'hypertension') ? 'selected' : ''; ?>>Hypertension</option>
+                        <option value="asthma" <?php echo ($profile['health'] == 'asthma') ? 'selected' : ''; ?>>Asthma</option>
+                        <option value="acne" <?php echo ($profile['health'] == 'acne') ? 'selected' : ''; ?>>Acne</option>
+                        <option value="hypercholesterolemia" <?php echo ($profile['health'] == 'hypercholesterolemia') ? 'selected' : ''; ?>>Hypercholesterolemia</option>
+                        <option value="high_blood_pressure" <?php echo ($profile['health'] == 'high_blood_pressure') ? 'selected' : ''; ?>>High Blood Pressure</option>
+                        <option value="low_blood_pressure" <?php echo ($profile['health'] == 'low_blood_pressure') ? 'selected' : ''; ?>>Low Blood Pressure</option>
+                        <option value="jaundice" <?php echo ($profile['health'] == 'jaundice') ? 'selected' : ''; ?>>Jaundice</option> 
                     </select>
                 </div>
             </div>
