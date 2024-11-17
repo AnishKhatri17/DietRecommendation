@@ -295,10 +295,10 @@ If a value is out of range, an alert is shown, and form submission is prevented.
                 </div>
                 </a>
 
-                <a href="#" class="card-link">
+                <a href="#HealthInfo" class="card-link">
                 <div class="card">
-                    <h3>Your Progress</h3>
-                    <p>Tap to see history records</p>
+                    <h3>More Health Info</h3>
+                    <p>Tap here to learn more health info ! </p>
                 </div>
                 </a>
 
@@ -534,7 +534,37 @@ If a value is out of range, an alert is shown, and form submission is prevented.
     </div>
         </section>
 
-        <section id="Feedback" id="Feedback">
+
+        <section id="HealthInfo" class="HealthInfo">
+    <div style="display: flex; flex-direction: column; gap: 20px; align-items: center; width: 100%; margin: 0 auto;
+     margin-top: 0px">
+    <h2 style="text-align: center; margin-bottom: 20px; display: block; margin-top: 0px; font-size: 30px; color: green;">"More Health Information"</h2>
+        <!-- Card for Daily Drinking Water -->
+        <div style="background: linear-gradient(to right, #4facfe, #00f2fe); border-radius: 10px; padding: 20px; width: 70%; text-align: center; color: white; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); ">
+            <h3 style="margin: 0; color: white;">Daily Drinking Water</h3>
+            <p style="margin: 10px 0;">Learn about proper hydration and the best times to drink water.</p>
+            <a href="daily_Drinking_Water.php" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: rgba(241, 241, 114, 0.971); color: black; text-decoration: none; border-radius: 5px; font-weight: bold;">Read More</a>
+        </div>
+
+        <!-- Card for Sleeping for Healthy Life -->
+        <div style="background: linear-gradient(to right, #667eea, #764ba2); border-radius: 10px; padding: 20px; width: 70%; text-align: center; color: white; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);">
+            <h3 style="margin: 0; color: white;">Sleeping for Healthy Life</h3>
+            <p style="margin: 10px 0;">Understand the importance of sleep for different age groups.</p>
+            <a href="Daily_Healthy_Sleeping.php" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: rgba(241, 241, 114, 0.971);; color: black; text-decoration: none; border-radius: 5px; font-weight: bold;">Read More</a>
+        </div>
+
+        <!-- Card for Exercise for Healthy Life -->
+        <div style="background: linear-gradient(to right, #ff758c, #ff7eb3); border-radius: 10px; padding: 20px; width: 70%; text-align: center; color: white; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);">
+            <h3 style="margin: 0; color: white;">Exercise for Healthy Life</h3>
+            <p style="margin: 10px 0;">Explore exercise routines and tips for different fitness levels.</p>
+            <a href="Daily_Exercise.php" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: rgba(241, 241, 114, 0.971);; color: black; text-decoration: none; border-radius: 5px; font-weight: bold;">Read More</a>
+        </div>
+    </div>
+
+    
+        </section>
+
+        <section id="Feedback" class="Feedback">
             <div class="feedback-container">
                 <h2>We would appreciate your feedback !</h2>
                 <form action="user_feedback_register.php" method="post" class="feedback-form">
